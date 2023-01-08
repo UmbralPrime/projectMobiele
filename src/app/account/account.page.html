@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col offsetXs="0" offsetSm="3" offsetMd="4" sizeXs="12" sizeSm="6" sizeMd="4">
+        <ion-item class="ion-margin-vertical" color="light" (click)="PresentUsernameAlert()">
+          <ion-label>Change username</ion-label>
+        </ion-item>
+        <ion-item class="ion-margin-vertical" color="light" (click)="authService.signOut()">
+          <ion-label>Logout</ion-label>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "145935935649",
+    "project_id": "bethere---project",
+    "storage_bucket": "bethere---project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145935935649:android:e520cfd98a965424e928e0",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145935935649-6ckl0iuk763dvv12840ag45nrpsrn920.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "5776ea7dfeb494d0f4195609e946564479723f3f"
+          }
+        },
+        {
+          "client_id": "145935935649-ahb12v6cgm1a1oun89aqdqd60urd469n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "097481a2ce2bfe3dbff91c62d21bf13a7c7c87c5"
+          }
+        },
+        {
+          "client_id": "145935935649-d7hnpdpg70modb9eg2bumijp6qjnldgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSLOTUNVM_koeuxgIThXTdd7i8nKZGaNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145935935649-d7hnpdpg70modb9eg2bumijp6qjnldgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

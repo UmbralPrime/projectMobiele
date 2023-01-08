@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="imgURL"></ion-img>
+  <ion-item lines="full">
+    <ion-label position="floating">Title post</ion-label>
+    <ion-textarea cols="20" rows="4" [autoGrow]="true"
+                  [(ngModel)]='titlePost'>
+    </ion-textarea>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea cols="20" rows="4" [autoGrow]="true"
+                  [(ngModel)]='description'>
+    </ion-textarea>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Date taken</ion-label>
+    <ion-datetime firstDayOfWeek="1"
+                  [(ngModel)]='dateTaken' presentation="date">
+    </ion-datetime>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Latitude</ion-label>
+    <ion-input type="number" cols="20" rows="4"
+                  [(ngModel)]='latitude'>
+    </ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Longitude</ion-label>
+    <ion-input type="number" cols="20" rows="4"
+                  [(ngModel)]='longitude'>
+    </ion-input>
+  </ion-item>
+  <ion-item>
+  </ion-item>
+
+</ion-content>
+<ion-footer>
+  <ion-button class="ion-float-left" (click)="updatePost()">
+    Update Post
+  </ion-button>
+  <ion-button class="ion-float-end" (click)="deletePost()">
+    Delete Post
+  </ion-button>
+</ion-footer>

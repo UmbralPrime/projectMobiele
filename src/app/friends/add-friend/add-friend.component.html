@@ -1,0 +1,6 @@
+<ng-container *ngIf="friend.id">
+  <ion-item class="ion-margin-vertical" color="light" (click)="addFriend(friend.id)">
+    <ion-label [textContent]="friend.username"></ion-label>
+  </ion-item>
+</ng-container>
+
