@@ -49,10 +49,6 @@ export class GalleryPage implements OnInit {
     let customFile = this.fileName + dateTimestampProvider.now()+".png"
     this.endFileName= customFile
     console.log(pic.dataUrl)
-    if(Capacitor.isNativePlatform()){
-      await this.saveFile(pic.u)
-    }
-    else
       await this.saveFile(pic.dataUrl,customFile)
 
     await this.router.navigate(['/create-post', this.endFileName])
@@ -64,7 +60,6 @@ export class GalleryPage implements OnInit {
     if(base64Data == undefined){
       base64Data = "undefined"
     }
-    let file: any
       const file: any = this.photoService.base64ToImage(base64Data)
 
     const uploadResult = await uploadBytes(imgRef, file, this.metadata );
