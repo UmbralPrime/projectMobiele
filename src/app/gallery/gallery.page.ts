@@ -9,6 +9,7 @@ import {Photo} from "@capacitor/camera";
 import {DatabaseService} from "../services/database.service";
 import {from, Observable} from "rxjs";
 import {Post} from "../../types/post";
+import {Capacitor} from "@capacitor/core";
 
 @Component({
   selector: 'app-gallery',
@@ -45,11 +46,14 @@ export class GalleryPage implements OnInit {
   }
   public async TakePhotoCreatePost() {
     let pic = await this.photoService.takePhoto()
-    if(pic.base64String){
-      let customFile = this.fileName + dateTimestampProvider.now()+".png"
-      this.endFileName= customFile
-      await this.saveFile(pic.dataUrl,customFile)
+    let customFile = this.fileName + dateTimestampProvider.now()+".png"
+    this.endFileName= customFile
+    console.log(pic.dataUrl)
+    if(Capacitor.isNativePlatform()){
+      await this.saveFile(pic.u)
     }
+    else
+      await this.saveFile(pic.dataUrl,customFile)
 
     await this.router.navigate(['/create-post', this.endFileName])
   }
@@ -60,7 +64,9 @@ export class GalleryPage implements OnInit {
     if(base64Data == undefined){
       base64Data = "undefined"
     }
-    const file: any = this.photoService.base64ToImage(base64Data)
+    let file: any
+      const file: any = this.photoService.base64ToImage(base64Data)
+
     const uploadResult = await uploadBytes(imgRef, file, this.metadata );
     const url = await getDownloadURL(imgRef);
     this.imgURL = url;
