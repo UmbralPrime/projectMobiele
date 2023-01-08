@@ -19,12 +19,14 @@
     "target": "es2015",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
     ],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInputTypes": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Friends</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-margin-vertical" color="light" (click)="PresentUsernameAlert()">
+    <ion-label>Add friend</ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col offsetXs="0" offsetSm="3" offsetMd="4" sizeXs="12" sizeSm="6" sizeMd="4" *ngIf="(searchedList|async); let friends">
+        <ion-label>Gesugesteerd op basis van je zoekopdracth</ion-label>
+        <ng-container class="" *ngFor="let friend of friends; let i= index">
+          <app-add-friend [friend]="friends[i]">
+          </app-add-friend>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offsetXs="0" offsetSm="3" offsetMd="4" sizeXs="12" sizeSm="6" sizeMd="4" *ngIf="(friendList|async); let friends">
+          <ng-container class="" *ngFor="let friend of friends; let i= index">
+            <app-friend-item [friend]="friends[i]">
+            </app-friend-item>
+          </ng-container>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
