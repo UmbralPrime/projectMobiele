@@ -19,9 +19,13 @@ export class MapPage implements OnInit {
   postsList: Observable<Post[]> = from([]);
 
   constructor(private dbService: DatabaseService) {
+    this.createMap();
   }
   ionViewDidEnter(){
     this.createMap();
+  }
+  ionViewDidLeave(){
+    this.thisMap = undefined;
   }
   async createMap() {
     if(this.mapRef!=null){

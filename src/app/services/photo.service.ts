@@ -89,6 +89,7 @@ export class PhotoService {
     });
     const uri = await this.#saveImageToFileSystem(image);
     this.#photoURIs.push(uri);
+
     this.#photos.push(image);
   }
   async #takePhotoPWA(): Promise<void> {
@@ -100,8 +101,6 @@ export class PhotoService {
     const uri = await this.#saveImageToFileSystem(image);
     this.#photoURIs.push(uri);
     image.path = uri;
-
-
     image.dataUrl = `data:image/${image.format};base64,${image.base64String}`;
     this.#photos.push(image);
   }
@@ -129,7 +128,9 @@ export class PhotoService {
       await this.#takePhotoPWA();
     }
     await this.#persistPhotoURIs();
-    return this.#photos[this.#photos.length-1]
+    await this.#loadPhotos()
+    console.log(this.#getLastPhoto())
+    return await this.#getLastPhoto()
   }
   async #loadPhotos(): Promise<void> {
     if (Capacitor.isNativePlatform()) {
@@ -137,6 +138,10 @@ export class PhotoService {
     } else {
       await this.#loadPhotosPWA();
     }
+  }
+  async #getLastPhoto(): Promise<Photo> {
+    await this.#loadPhotos()
+    return this.#photos[this.#photos.length-1]
   }
   #getPhotoFormat(uri: string): string {
     const splitUri = uri.split('.');
@@ -151,10 +156,6 @@ export class PhotoService {
         saved: this.#havePhotosPermission()
       });
     }
-    /*const ofPics : Observable<Picture[]> = this.databaseService.retrievePictures()
-    for (let pic of ofPics ){
-
-    }*/
   }
   async #loadPhotosPWA(): Promise<void> {
     for (const uri of this.#photoURIs) {
