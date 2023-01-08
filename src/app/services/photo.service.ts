@@ -96,7 +96,8 @@ export class PhotoService {
     const image = await Camera.getPhoto({
       quality: 90,
       resultType: CameraResultType.Base64,
-      source: CameraSource.Camera
+      saveToGallery: this.#havePhotosPermission(),
+      source: this.#determinePhotoSource()
     });
     const uri = await this.#saveImageToFileSystem(image);
     this.#photoURIs.push(uri);
@@ -122,13 +123,8 @@ export class PhotoService {
       await this.#requestPermissions();
     }
 
-    if (Capacitor.isNativePlatform()) {
-      await this.#takePhotoNative();
-    } else {
-      await this.#takePhotoPWA();
-    }
+    await this.#takePhotoPWA();
     await this.#persistPhotoURIs();
-    await this.#loadPhotos()
     console.log(this.#getLastPhoto())
     return await this.#getLastPhoto()
   }
@@ -140,7 +136,6 @@ export class PhotoService {
     }
   }
   async #getLastPhoto(): Promise<Photo> {
-    await this.#loadPhotos()
     return this.#photos[this.#photos.length-1]
   }
   #getPhotoFormat(uri: string): string {

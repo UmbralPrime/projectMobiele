@@ -20,9 +20,11 @@ export class MapPage implements OnInit {
 
   constructor(private dbService: DatabaseService) {
     this.createMap();
+    this.postsList = this.dbService.retrievePosts()
   }
   ionViewDidEnter(){
     this.createMap();
+    this.postsList = this.dbService.retrievePosts()
   }
   ionViewDidLeave(){
     this.thisMap = undefined;
@@ -46,28 +48,39 @@ export class MapPage implements OnInit {
     }
 
   }
+  markers: Marker[]=[{
+    coordinate:{
+      lat: 51.3175,
+      lng: 4.9292
+    },
+    title:'Thomas More Turnhout',
+    snippet: 'Hier is de campus van Thomas More Turnhout'
+  }]
   async addMarkers(){
-    this.postsList = this.dbService.retrievePosts();
-    const markers: Marker[]=[{
-      coordinate:{
-        lat: 51.3175,
-        lng: 4.9292
-      },
-      title:'Thomas More Turnhout',
-      snippet: 'Hier is de campus van Thomas More Turnhout'
-    }]
-    this.postsList.forEach(x=>x.map(x=>markers.push({
-      coordinate:{
+    this.postsList.forEach(x => x.map(x => this.markers.push({
+      coordinate: {
         lat: x.latitude,
         lng: x.longitude
       },
       title: x.titlePost,
       snippet: x.description
     })))
-    await this.thisMap?.addMarkers(markers);
+    await this.thisMap?.addMarkers(this.markers);
     //Wanneer je op een marker wilt klikken en extra info wilt zien
     //Niet geimplementeerd, maar wel mogelijk :)
     //this.thisMap?.setOnMarkerClickListener(async (marker)=>{ console.log(marker)})
+  }
+  async addIndividualMarker(x: Post){
+    let indMarker: Marker[]
+      indMarker=[{
+      coordinate: {
+        lat: x.latitude,
+        lng: x.longitude
+      },
+      title: x.titlePost,
+      snippet: x.description
+    }]
+    await this.thisMap?.addMarkers(indMarker)
   }
 
   ngOnInit() {
